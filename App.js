@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet,  Platform, SafeAreaView as SafeAreaViewIos } from 'react-native';
+import { SafeAreaView as SafeAreaViewAndroid } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
+import Main from './src/Main';
 
-export default function App() {
+//const Stack = createNativeStackNavigator();
+
+const App = () => { 
+  let SafeArea = Platform.OS==="ios"?SafeAreaViewIos:SafeAreaViewAndroid
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <Provider store={store}>
+      <SafeArea  style={styles.container}>  
+          <Main /> 
+      </SafeArea>
+    </Provider>
+  ); 
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    flex: 1
+  }
 });
+export default App;
