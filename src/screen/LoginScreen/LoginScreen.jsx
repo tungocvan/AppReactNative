@@ -28,9 +28,7 @@ function LoginScreen() {
   const statusLogout = useSelector(accountsSelector);
   console.log("statusLogout:", statusLogout.isLogout);
   const navigation = useNavigation();
-  const handleGoogleSignIn = async () => {
-    return await "google";
-  };
+
   const handleSignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
@@ -46,8 +44,7 @@ function LoginScreen() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log(user.email);
-        dispatch(isLogout(user));
+        dispatch(isLogout());
         //console.log("Logged in with:", user.email);
         // lưu vào redux trạng thái đăng nhập thành công
         //navigation.replace("Home");
@@ -87,9 +84,6 @@ function LoginScreen() {
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleGoogleSignIn} style={styles.button}>
-          <Text style={styles.buttonText}>Google Signin</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>

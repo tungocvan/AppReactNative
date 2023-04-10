@@ -10,7 +10,7 @@ const accountSlice = createSlice({
     },
   },
   reducers: {
-    isLogout(state, action) {
+    isLogout(state) {
       //console.log(("Login user: ", action.payload));
       state.isLogout = true;
       return state;
@@ -34,4 +34,4 @@ export const isLogoutSelector = (state) => {
 };
 //export const { markComplete } = productSlice.actions;
 export default accountsReducer;
-export const { isLogout } = accountSlice.actions;
+export const { isLogout, Logout } = accountSlice.actions;

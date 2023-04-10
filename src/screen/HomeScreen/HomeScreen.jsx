@@ -1,11 +1,18 @@
 import React, { useEffect } from "react";
 import { Text, View } from "react-native";
-import styles from "./styles";
-import { useSelector } from "react-redux";
-import { accountsSelector } from "../../redux/reducers/accountSlice";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
-function HomeScreen({ navigation }) {
+import styles from "./styles";
+import BtnIonicons from "../../components/BtnIonicons";
+import { useSelector } from "react-redux";
+import AccountScreen from "../AccountScreen";
+import ContactScreen from "../ContactScreen";
+import { accountsSelector } from "../../redux/reducers/accountSlice";
+const Tab = createMaterialBottomTabNavigator();
+
+function HomeScreen({ navigation, route }) {
   const statusLogout = useSelector(accountsSelector);
+  console.log("route:", route);
   console.log("HomeScreen statusLogout:", statusLogout.isLogout);
   useEffect(() => {
     if (statusLogout.isLogout === false) {
@@ -13,9 +20,33 @@ function HomeScreen({ navigation }) {
     }
   }, [navigation, statusLogout.isLogout]);
   return (
-    <View style={styles.container}>
-      <Text>HomeScreen2</Text>
-    </View>
+    <Tab.Navigator
+      initialRouteName="Account"
+      activeColor="green"
+      inactiveColor="#fff"
+      barStyle={{ backgroundColor: "#694fad" }}
+    >
+      <Tab.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          tabBarLabel: "Account",
+          tabBarIcon: ({ color }) => (
+            <BtnIonicons name="md-people-circle-outline" color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Contact"
+        component={ContactScreen}
+        options={{
+          tabBarLabel: "Contact",
+          tabBarIcon: ({ color }) => (
+            <BtnIonicons name="md-people-outline" color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 

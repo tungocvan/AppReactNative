@@ -9,11 +9,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/drawer": "^6.6.2",
+    "@react-navigation/material-bottom-tabs": "^6.2.15",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@reduxjs/toolkit": "^1.9.3",
     "add": "^2.0.6",
     "expo": "~48.0.10",
+    "expo-google-app-auth": "~8.3.0",
     "expo-status-bar": "~1.4.4",
     "firebase": "^9.19.1",
     "react": "18.2.0",
@@ -23,7 +26,8 @@
     "react-native-svg": "^13.9.0",
     "react-redux": "^8.0.5",
     "undefined": "@expo/vector-icons/Ionicons",
-    "expo-google-app-auth": "~8.3.0"
+    "react-native-gesture-handler": "~2.9.0",
+    "react-native-reanimated": "~2.14.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
