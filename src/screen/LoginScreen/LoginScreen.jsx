@@ -54,7 +54,7 @@ function LoginScreen() {
 
   useEffect(() => {
     if (statusLogout.isLogout) {
-      navigation.replace("Home");
+      navigation.replace("Drawer");
     }
   }, [navigation, statusLogout.isLogout]);
 

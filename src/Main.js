@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useDispatch } from "react-redux";
 import { Logout } from "./redux/reducers/accountSlice";
 import LoginScreen from "./screen/LoginScreen";
+import DrawerScreen from "./screen/DrawerScreen";
 import HomeScreen from "./screen/HomeScreen";
 import BtnIonicons from "./components/BtnIonicons";
 const Stack = createNativeStackNavigator();
@@ -26,8 +27,8 @@ export default function Main() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
+          name="Drawer"
+          component={DrawerScreen}
           options={{
             header: () => null,
           }}
