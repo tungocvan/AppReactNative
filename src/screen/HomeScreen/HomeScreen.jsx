@@ -1,53 +1,62 @@
-import React, { useEffect } from "react";
-import { Text, View } from "react-native";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import * as React from "react";
+import { Button, Text, View } from "react-native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import styles from "./styles";
-import BtnIonicons from "../../components/BtnIonicons";
-import { useSelector } from "react-redux";
-import AccountScreen from "../AccountScreen";
-import ContactScreen from "../ContactScreen";
-import { accountsSelector } from "../../redux/reducers/accountSlice";
-const Tab = createMaterialBottomTabNavigator();
-
-function HomeScreen({ navigation, route }) {
-  const statusLogout = useSelector(accountsSelector);
-  console.log("route:", route);
-  console.log("HomeScreen statusLogout:", statusLogout.isLogout);
-  useEffect(() => {
-    if (statusLogout.isLogout === false) {
-      navigation.replace("Login");
-    }
-  }, [navigation, statusLogout.isLogout]);
+function HomeScreen({ navigation }) {
   return (
-    <Tab.Navigator
-      initialRouteName="Account"
-      activeColor="green"
-      inactiveColor="#fff"
-      barStyle={{ backgroundColor: "#694fad" }}
-    >
-      <Tab.Screen
-        name="Account"
-        component={AccountScreen}
-        options={{
-          tabBarLabel: "Account",
-          tabBarIcon: ({ color }) => (
-            <BtnIonicons name="md-people-circle-outline" color={color} />
-          ),
-        }}
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Button
+        onPress={() => navigation.getParent("LeftDrawer").openDrawer()}
+        title="Open left drawer"
       />
-      <Tab.Screen
-        name="Contact"
-        component={ContactScreen}
-        options={{
-          tabBarLabel: "Contact",
-          tabBarIcon: ({ color }) => (
-            <BtnIonicons name="md-people-outline" color={color} />
-          ),
-        }}
+      <Button
+        onPress={() => navigation.getParent("RightDrawer").openDrawer()}
+        title="Open right drawer"
       />
-    </Tab.Navigator>
+    </View>
   );
 }
 
-export default HomeScreen;
+function RightDrawerContent() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>This is the right drawer</Text>
+    </View>
+  );
+}
+
+const LeftDrawer = createDrawerNavigator();
+
+function LeftDrawerScreen() {
+  return (
+    <LeftDrawer.Navigator
+      useLegacyImplementation
+      id="LeftDrawer"
+      screenOptions={{ drawerPosition: "left" }}
+    >
+      <LeftDrawer.Screen name="Home" component={HomeScreen} />
+    </LeftDrawer.Navigator>
+  );
+}
+
+const RightDrawer = createDrawerNavigator();
+
+function RightDrawerScreen() {
+  return (
+    <RightDrawer.Navigator
+      useLegacyImplementation
+      id="RightDrawer"
+      drawerContent={(props) => <RightDrawerContent {...props} />}
+      screenOptions={{
+        drawerPosition: "right",
+        headerShown: false,
+      }}
+    >
+      <RightDrawer.Screen name="HomeDrawer" component={LeftDrawerScreen} />
+    </RightDrawer.Navigator>
+  );
+}
+
+export default function App() {
+  return <RightDrawerScreen />;
+}

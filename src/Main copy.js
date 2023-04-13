@@ -29,7 +29,13 @@ export default function Main() {
           name="Home"
           component={HomeScreen}
           options={{
-            header: () => null,
+            headerRight: () => (
+              <BtnIonicons
+                onPress={handlerLogout}
+                name="ios-exit-outline"
+                color="green"
+              />
+            ),
           }}
         />
       </Stack.Navigator>
