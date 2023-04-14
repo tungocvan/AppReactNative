@@ -13,14 +13,14 @@ import TabScreen from "../TabScreen/TabScreen";
 //const Drawer = createDrawerNavigator();
 function HomeScreen({ navigation, route }) {
   const statusLogout = useSelector(accountsSelector);
-  console.log("route:", route);
-  console.log("HomeScreen statusLogout:", statusLogout.isLogout);
+  //console.log("route:", route);
+  //console.log("HomeScreen statusLogout:", statusLogout.isLogout);
   useEffect(() => {
     if (statusLogout.isLogout === false) {
       navigation.replace("Login");
     }
   }, [navigation, statusLogout.isLogout]);
-  return <TabScreen initRouter="Account" />;
+  return <TabScreen initRouter="TrangChu" />;
 }
 
 export default HomeScreen;

@@ -22,10 +22,8 @@ import styles from "./styles";
 //import Ionicons from '@expo/vector-icons/Ionicons';
 
 function LoginScreen() {
-  //const [email, setEmail] = useState("");
-  let email = "";
-  let password = "";
-  //const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const statusLogout = useSelector(accountsSelector);
   console.log("statusLogout:", statusLogout.isLogout);
@@ -42,7 +40,7 @@ function LoginScreen() {
   };
 
   const handleLogin = () => {
-    //console.log(email);
+    //console.log(email, "-", password);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
@@ -65,14 +63,14 @@ function LoginScreen() {
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
-          defaultValue={email}
-          onChangeText={(text) => (email = text)}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
           style={styles.input}
         />
         <TextInput
           placeholder="Password"
-          defaultValue={password}
-          onChangeText={(text) => (password = text)}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
           style={styles.input}
           secureTextEntry
         />

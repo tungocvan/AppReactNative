@@ -3,17 +3,17 @@ import { Text, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import styles from "./styles";
 
-function AccountScreen(props) {
+function SanPhamScreen(props) {
   useFocusEffect(
     React.useCallback(() => {
-      console.log("AccountScreen");
+      console.log("SanPhamScreen");
     }, [])
   );
   return (
     <View style={styles.container}>
-      <Text>AccountScreen</Text>
+      <Text>SanPhamScreen</Text>
     </View>
   );
 }
 
-export default AccountScreen;
+export default SanPhamScreen;

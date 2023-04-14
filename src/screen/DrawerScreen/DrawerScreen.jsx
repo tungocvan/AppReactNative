@@ -1,14 +1,17 @@
 import * as React from "react";
-import { Button, Text, View } from "react-native";
+import { Text, View, Dimensions } from "react-native";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItem,
 } from "@react-navigation/drawer";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useDispatch } from "react-redux";
+import { Logout } from "../../redux/reducers/accountSlice";
 import HomeScreen from "../HomeScreen";
-import AboutScreen from "../AboutScreen";
-import ContactScreen from "../ContactScreen";
+//import AboutScreen from "../AboutScreen";
+//import ContactScreen from "../ContactScreen";
+//import { BottomTabBar } from "@react-navigation/bottom-tabs";
 
 function RightDrawerContent() {
   return (
@@ -25,7 +28,15 @@ function LeftDrawerScreen() {
     <LeftDrawer.Navigator
       useLegacyImplementation
       id="LeftDrawer"
-      screenOptions={{ drawerPosition: "left" }}
+      screenOptions={{
+        drawerPosition: "left",
+        drawerStyle: {
+          backgroundColor: "#c6cbef",
+          width: 240,
+          top: 10,
+          flex: 1,
+        },
+      }}
       drawerContent={(props) => {
         return <CustomDrawerContent {...props} />;
       }}
@@ -54,41 +65,84 @@ function RightDrawerScreen() {
 }
 
 function CustomDrawerContent(props) {
+  const chieuCaoManHinh = Dimensions.get("window").height;
+  const dispatch = useDispatch();
+  const handlerLogout = () => {
+    dispatch(Logout());
+  };
   return (
     <DrawerContentScrollView {...props}>
-      <DrawerItem
-        label={() => (
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Ionicons name="home" size={14} color="black" />
-            <Text style={{ paddingHorizontal: 5 }}>Account</Text>
-          </View>
-        )}
-        onPress={() => {
-          props.navigation.navigate("Account");
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          flex: 1,
+          alignItems: "flex-end",
+          height: chieuCaoManHinh - 90,
         }}
-      />
-      <DrawerItem
-        label={() => (
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Ionicons name="home" size={14} color="black" />
-            <Text style={{ paddingHorizontal: 5 }}>About</Text>
-          </View>
-        )}
-        onPress={() => {
-          props.navigation.navigate("About");
-        }}
-      />
-      <DrawerItem
-        label={() => (
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Ionicons name="home" size={14} color="black" />
-            <Text style={{ paddingHorizontal: 5 }}>Contact</Text>
-          </View>
-        )}
-        onPress={() => {
-          props.navigation.navigate("Contact");
-        }}
-      />
+      >
+        <View style={{ width: "100%" }}>
+          <DrawerItem
+            label={() => (
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Ionicons name="home-outline" color="balck" size={16} />
+                <Text style={{ paddingHorizontal: 5 }}>Trang Chủ</Text>
+              </View>
+            )}
+            onPress={() => {
+              props.navigation.navigate("TrangChu");
+            }}
+          />
+          <DrawerItem
+            label={() => (
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Ionicons name="add-circle-outline" color="balck" size={16} />
+                <Text style={{ paddingHorizontal: 5 }}>Sản Phẩm</Text>
+              </View>
+            )}
+            onPress={() => {
+              props.navigation.navigate("SanPham");
+            }}
+          />
+          <DrawerItem
+            label={() => (
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Ionicons
+                  name="md-people-circle-outline"
+                  color="balck"
+                  size={16}
+                />
+                <Text style={{ paddingHorizontal: 5 }}>Tài Khoản</Text>
+              </View>
+            )}
+            onPress={() => {
+              props.navigation.navigate("TaiKhoan");
+            }}
+          />
+        </View>
+        <View
+          style={{
+            width: "100%",
+            backgroundColor: "green",
+            color: "black",
+          }}
+        >
+          <DrawerItem
+            label={() => (
+              <View style={{ flexDirection: "row" }}>
+                <Ionicons name="exit-outline" size={20} color="black" />
+                <Text style={{ paddingHorizontal: 5, fontSize: 20 }}>
+                  Đăng Xuất
+                </Text>
+              </View>
+            )}
+            onPress={() => {
+              handlerLogout();
+            }}
+          />
+        </View>
+      </View>
     </DrawerContentScrollView>
   );
 }

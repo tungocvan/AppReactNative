@@ -3,17 +3,17 @@ import { Text, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import styles from "./styles";
 
-function AccountScreen(props) {
+function TaiKhoanScreen(props) {
   useFocusEffect(
     React.useCallback(() => {
-      console.log("AccountScreen");
+      console.log("TaiKhoanScreen");
     }, [])
   );
   return (
     <View style={styles.container}>
-      <Text>AccountScreen</Text>
+      <Text>TaiKhoanScreen</Text>
     </View>
   );
 }
 
-export default AccountScreen;
+export default TaiKhoanScreen;
