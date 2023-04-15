@@ -41,7 +41,11 @@ function LeftDrawerScreen() {
         return <CustomDrawerContent {...props} />;
       }}
     >
-      <LeftDrawer.Screen name="Home" component={HomeScreen} />
+      <LeftDrawer.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ title: "My home" }}
+      />
     </LeftDrawer.Navigator>
   );
 }
@@ -86,7 +90,7 @@ function CustomDrawerContent(props) {
           <DrawerItem
             label={() => (
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Ionicons name="home-outline" color="balck" size={16} />
+                <Ionicons name="home-outline" color="black" size={16} />
                 <Text style={{ paddingHorizontal: 5 }}>Trang Chủ</Text>
               </View>
             )}
@@ -97,7 +101,7 @@ function CustomDrawerContent(props) {
           <DrawerItem
             label={() => (
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Ionicons name="add-circle-outline" color="balck" size={16} />
+                <Ionicons name="add-circle-outline" color="black" size={16} />
                 <Text style={{ paddingHorizontal: 5 }}>Sản Phẩm</Text>
               </View>
             )}
@@ -110,7 +114,7 @@ function CustomDrawerContent(props) {
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Ionicons
                   name="md-people-circle-outline"
-                  color="balck"
+                  color="black"
                   size={16}
                 />
                 <Text style={{ paddingHorizontal: 5 }}>Tài Khoản</Text>

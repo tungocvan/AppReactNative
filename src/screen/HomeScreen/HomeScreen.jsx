@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, View } from "react-native";
+//import { Text, View } from "react-native";
 //import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 import styles from "./styles";
