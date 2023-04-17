@@ -83,6 +83,92 @@ function SanPhamScreen(props) {
           </Text>
         </BoxInfo>
       </View>
+      <View
+        style={[
+          styles.container,
+          {
+            flexDirection: "row",
+            alignContent: "space-between",
+          },
+        ]}
+      >
+        <BoxInfo color="#fff">
+          <Text
+            style={{
+              color: "#000",
+              fontWeight: "500",
+              textAlign: "center",
+            }}
+          >
+            Box
+          </Text>
+        </BoxInfo>
+        <BoxInfo color="#fff">
+          <Text
+            style={{
+              color: "#000",
+              fontWeight: "500",
+              textAlign: "center",
+            }}
+          >
+            Box
+          </Text>
+        </BoxInfo>
+        <BoxInfo color="#fff">
+          <Text
+            style={{
+              color: "#000",
+              fontWeight: "500",
+              textAlign: "center",
+            }}
+          >
+            Box
+          </Text>
+        </BoxInfo>
+      </View>
+      <View
+        style={[
+          styles.container,
+          {
+            flexDirection: "row",
+            alignContent: "space-between",
+          },
+        ]}
+      >
+        <BoxInfo color="#fff">
+          <Text
+            style={{
+              color: "#000",
+              fontWeight: "500",
+              textAlign: "center",
+            }}
+          >
+            Box
+          </Text>
+        </BoxInfo>
+        <BoxInfo color="#fff">
+          <Text
+            style={{
+              color: "#000",
+              fontWeight: "500",
+              textAlign: "center",
+            }}
+          >
+            Box
+          </Text>
+        </BoxInfo>
+        <BoxInfo color="#fff">
+          <Text
+            style={{
+              color: "#000",
+              fontWeight: "500",
+              textAlign: "center",
+            }}
+          >
+            Box
+          </Text>
+        </BoxInfo>
+      </View>
     </View>
   );
 }
